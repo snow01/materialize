@@ -1,13 +1,20 @@
+$sidenav-width: 240px !default;
+$sidenav-bg-color: #FFF !default;
+$sidenav-link-color: #444 !default;
+$sidenav-link-hover-bg-color: #ddd !default;
+$sidenav-link-active-bg-color: $primary-color !default;
+$sidenav-link-active-color: #FFF !default;
+
 ul.side-nav {
   position: fixed;
-  width: 240px;
+  width: $sidenav-width;
   left: -105%;
   top: 0;
   margin: 0;
   height: 100%;
   height: calc(100% + 60px);
   padding-bottom: 60px;
-  background-color: #FFF;
+  background-color: $sidenav-bg-color;
   z-index: 999;
 
   @extend .z-depth-1;
@@ -20,21 +27,33 @@ ul.side-nav {
     left: auto;
   }
 
-  .collapsible{
+  .collapsible {
     margin: 0;
   }
 
-
   li {
     float: none;
-    padding: 0 15px;
-    &:hover, &.active { background-color: #ddd; }
-  }
-  a {
-    color: #444;
-  }
-}
+    padding: 0;
+    width: $sidenav-width;
 
+    a:not(.btn) {
+      @include transition(background-color 0.3s);
+
+      &:hover {
+        background-color: $sidenav-link-hover-bg-color;
+      }
+
+      &.active {
+        background-color: $sidenav-link-active-bg-color;
+        color: $sidenav-link-active-color;
+      }
+
+      color: $sidenav-link-color;
+      padding: 1rem;
+    }
+  }
+
+}
 
 // Touch interaction
 .drag-target {
@@ -45,16 +64,14 @@ ul.side-nav {
   z-index: 998;
 }
 
-
 // Hidden side-nav for all sizes
 ul.side-nav.fixed {
-  a {
+  a:not(.btn) {
     display: block;
-    padding: 0 15px;
-    color: #444;
+    padding: 1rem;
+    color: $sidenav-link-color;
   }
 }
-
 
 // Fixed side-nav shown
 ul.side-nav.fixed {
@@ -80,15 +97,20 @@ ul.side-nav.fixed {
   }
 }
 
-
-ul.side-nav .collapsible-body li.active,
-ul.side-nav.fixed .collapsible-body li.active {
-  background-color: $primary-color;
-  a {
-    color: #fff;
-  }
-}
-
+//ul.side-nav li a.collapsible-body.active,
+//ul.side-nav.fixed li a.collapsible-body.active {
+//
+//  background-color: $sidenav-link-active-color;
+//  color: #fff;
+//}
+//
+//
+//ul.side-nav li a.collapsible-header.active,
+//ul.side-nav.fixed li a.collapsible-header.active {
+//
+//  background-color: $sidenav-link-hover-color;
+//  color: $sidenav-link-color;
+//}
 
 #sidenav-overlay {
   position: fixed;
@@ -97,7 +119,7 @@ ul.side-nav.fixed .collapsible-body li.active {
   right: 0px;
 
   height: 120vh;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, .5);
   z-index: 997;
 
   will-change: opacity;

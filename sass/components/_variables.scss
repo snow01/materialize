@@ -114,7 +114,7 @@ $h5-fontsize: 1.64rem !default;
 $h6-fontsize: 1rem !default;
 
 // Footer
-$footer-bg-color: $primary-color;
+$footer-bg-color: $primary-color !default;
 
 // Flowtext
 $range : $large-screen - $small-screen !default;
